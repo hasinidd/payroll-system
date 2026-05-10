@@ -1,0 +1,3 @@
+ALTER TABLE public.employees ADD COLUMN IF NOT EXISTS biometric_id text;
+CREATE INDEX IF NOT EXISTS idx_employees_biometric_id ON public.employees(biometric_id) WHERE biometric_id IS NOT NULL;
+COMMENT ON COLUMN public.employees.biometric_id IS 'Numeric ID enrolled on fingerprint device; used to match attendance text-file imports. Separate from nic_number so devices that only accept digits stay compatible.';
